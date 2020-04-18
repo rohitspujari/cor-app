@@ -3,14 +3,16 @@ import React from 'react';
 import './App.css';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import ResultList from './ui/components/ResultList';
-import Header from './ui/components/Header';
 import { Route, Switch } from 'react-router-dom';
 
 import Post from './ui/pages/PostDetail';
 import NewPost from './ui/pages/NewPost';
 import Home from './ui/pages/Home';
 import theme from './ui/Theme';
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
 
 function App() {
   return (

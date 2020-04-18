@@ -28,7 +28,7 @@ export const schema = {
                     "name": "problem",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "solution": {
@@ -42,27 +42,6 @@ export const schema = {
                     "name": "resources",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "views": {
-                    "name": "views",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "likes": {
-                    "name": "likes",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "dislikes": {
-                    "name": "dislikes",
-                    "isArray": false,
-                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -83,5 +62,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "8bf15b0b4333110c5b86cdc3c1de2295"
+    "version": "ab20770024adc2bdd15e5d4bdb70de55"
 };

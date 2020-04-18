@@ -21,9 +21,6 @@ export const syncPosts = /* GraphQL */ `
         problem
         solution
         resources
-        views
-        likes
-        dislikes
         _version
         _deleted
         _lastChangedAt
@@ -42,9 +39,6 @@ export const getPost = /* GraphQL */ `
       problem
       solution
       resources
-      views
-      likes
-      dislikes
       _version
       _deleted
       _lastChangedAt
@@ -65,9 +59,6 @@ export const listPosts = /* GraphQL */ `
         problem
         solution
         resources
-        views
-        likes
-        dislikes
         _version
         _deleted
         _lastChangedAt
@@ -97,9 +88,6 @@ export const searchPosts = /* GraphQL */ `
         problem
         solution
         resources
-        views
-        likes
-        dislikes
         _version
         _deleted
         _lastChangedAt

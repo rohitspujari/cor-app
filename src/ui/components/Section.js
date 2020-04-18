@@ -20,7 +20,7 @@ export default function Section(props) {
     <Paper elevation={0} style={{ padding: 10, marginTop: 10 }}>
       <Grid container spacing={2} alignItems="center" justify="space-between">
         <Grid item xs={11}>
-          <Typography variant="h6" color="primary">
+          <Typography variant="h6" color="secondary">
             {label}
           </Typography>
         </Grid>

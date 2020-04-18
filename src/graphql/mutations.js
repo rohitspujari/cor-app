@@ -13,9 +13,6 @@ export const createPost = /* GraphQL */ `
       problem
       solution
       resources
-      views
-      likes
-      dislikes
       _version
       _deleted
       _lastChangedAt
@@ -34,9 +31,6 @@ export const updatePost = /* GraphQL */ `
       problem
       solution
       resources
-      views
-      likes
-      dislikes
       _version
       _deleted
       _lastChangedAt
@@ -55,9 +49,6 @@ export const deletePost = /* GraphQL */ `
       problem
       solution
       resources
-      views
-      likes
-      dislikes
       _version
       _deleted
       _lastChangedAt

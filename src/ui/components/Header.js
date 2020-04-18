@@ -17,6 +17,8 @@ import UploadIcon from '@material-ui/icons/CloudUpload';
 import { useHistory } from 'react-router-dom';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Post } from '../../models';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 import logo from '../../assets/logo.png';
 
@@ -97,6 +99,15 @@ const ProcessExcel = (file) => {
 
 const InsertData = (data) => {
   data.map(async ({ Service, Feature, Problem, Solution, Resources }) => {
+    const input = {
+      service: Service,
+      feature: Feature,
+      problem: Problem,
+      solution: Solution,
+      resources: Resources,
+    };
+
+    //await API.graphql(graphqlOperation(mutations.createPost, { input }));
     await DataStore.save(
       new Post({
         service: Service,
@@ -187,7 +198,13 @@ export default function Header(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  const { children, search, createButton } = props;
+  const {
+    children,
+    search,
+    createButton,
+    onSearchTextChange,
+    onSearchSubmit,
+  } = props;
 
   const displayCreate = false || createButton;
 
@@ -231,7 +248,12 @@ export default function Header(props) {
               <Button color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
-          {search === true ? <SearchBar /> : null}
+          {search === true ? (
+            <SearchBar
+              onChange={onSearchTextChange}
+              onSearchSubmit={onSearchSubmit}
+            />
+          ) : null}
         </>
       </ElevationScroll>
 

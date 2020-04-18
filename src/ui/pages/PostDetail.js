@@ -12,7 +12,7 @@ import {
 
 import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbsDownIcon from '@material-ui/icons/ThumbDown';
-import { DataStore, Predicates } from '@aws-amplify/datastore';
+import { DataStore } from '@aws-amplify/datastore';
 
 import Header from '../components/Header';
 import Section from '../components/Section';
@@ -47,7 +47,7 @@ export default function PostDetail(props) {
 
   useEffect(() => {
     getPost();
-  }, [number]);
+  }, []);
 
   if (!post) return null;
   const { service, feature, problem, solution, resources } = post;

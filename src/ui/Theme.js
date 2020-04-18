@@ -15,10 +15,16 @@ export default createMuiTheme({
     secondary: {
       main: `${amazonOrange}`,
     },
+    background: {
+      paper: `#f7f7f7`,
+    },
   },
   typography: {
     h6: {
       fontWeight: 400,
+    },
+    button: {
+      textTransform: 'none',
     },
   },
 });
