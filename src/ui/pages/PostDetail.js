@@ -152,12 +152,13 @@ export default function PostDetail(props) {
                   updated.problem = problem;
                   updated.solution = solution;
                   updated.resources = resources;
+                  updated.searchField = `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`;
                 })
               );
             }
             setIsEdited(!isEdited);
           }}
-          variant="outlined"
+          variant="contained"
           color="primary"
         >
           {isEdited === true ? 'Save' : 'Edit'}

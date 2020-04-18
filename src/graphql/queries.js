@@ -68,32 +68,3 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const searchPosts = /* GraphQL */ `
-  query SearchPosts(
-    $filter: SearchablePostFilterInput
-    $sort: SearchablePostSortInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    searchPosts(
-      filter: $filter
-      sort: $sort
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        service
-        feature
-        problem
-        solution
-        resources
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      total
-    }
-  }
-`;

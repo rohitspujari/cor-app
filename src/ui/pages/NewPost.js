@@ -46,6 +46,7 @@ export default function NewPost() {
         problem,
         solution,
         resources,
+        searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
       })
     );
   };
@@ -105,12 +106,12 @@ export default function NewPost() {
         <Button
           onClick={handleSave}
           style={{ marginRight: 10 }}
-          variant="outlined"
+          variant="contained"
           color="primary"
         >
           Save & Create New
         </Button>
-        <Button onClick={handleSaveExit} variant="outlined" color="primary">
+        <Button onClick={handleSaveExit} variant="contained" color="primary">
           Save
         </Button>
       </Box>

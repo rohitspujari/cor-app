@@ -24,7 +24,7 @@ export default function DeleteAlertDialog({ onConfirmDelete }) {
 
   return (
     <>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="contained" color="primary" onClick={handleClickOpen}>
         Delete
       </Button>
       <Dialog open={open} onClose={handleClose}>

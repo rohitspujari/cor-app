@@ -44,6 +44,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "searchField": {
+                    "name": "searchField",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -52,9 +59,46 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                }
+            ]
+        },
+        "Feedback": {
+            "name": "Feedback",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
                 },
+                "contact": {
+                    "name": "contact",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "comment": {
+                    "name": "comment",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Feedbacks",
+            "attributes": [
                 {
-                    "type": "searchable",
+                    "type": "model",
                     "properties": {}
                 }
             ]
@@ -62,5 +106,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "ab20770024adc2bdd15e5d4bdb70de55"
+    "version": "58c7e8b776f2d862d0f78bc60e36969c"
 };

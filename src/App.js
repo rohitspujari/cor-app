@@ -12,6 +12,8 @@ import theme from './ui/Theme';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 
+import FeedbackPage from './ui/pages/FeedbackPage';
+
 Amplify.configure(awsconfig);
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/post/:number" component={Post} />
-        <Route path="/create/" component={NewPost} />
+        <Route path="/create" component={NewPost} />
+        <Route path="/feedback" component={FeedbackPage} />
       </Switch>
     </ThemeProvider>
   );

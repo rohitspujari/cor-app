@@ -1,8 +1,16 @@
-type Post @model @searchable {
+type Post @model {
   id: ID!
   service: String
   feature: String
   problem: String
   solution: String
   resources: String
+  searchField: String
+}
+
+type Feedback @model {
+  id: ID!
+  contact: String
+  comment: String
+  createdAt: String
 }

@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import SearchBar from './SearchBar';
+import FeedbackDialog from './FeedbackDialog';
 import { Button, Menu, MenuItem, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -115,6 +116,7 @@ const InsertData = (data) => {
         problem: Problem,
         solution: Solution,
         resources: Resources,
+        searchField: `${Service.toLowerCase()} ${Feature.toLowerCase()} ${Problem.toLowerCase()} ${Solution.toLowerCase()} ${Resources.toLowerCase()}`,
       })
     );
   });
@@ -132,7 +134,8 @@ function UploadButton() {
     <div>
       <input
         onChange={handleUpload}
-        accept="*/*"
+        //accept="*/*"
+        accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         className={classes.input}
         id="contained-button-file"
         multiple
@@ -184,6 +187,7 @@ function MenuButton() {
         onClose={handleClose}
       >
         <MenuItem onClick={() => history.push('/create')}>Create New</MenuItem>
+        <MenuItem onClick={() => history.push('/feedback')}>Feedback</MenuItem>
         <MenuItem
           onClick={async () => await DataStore.delete(Post, Predicates.ALL)}
         >
@@ -230,7 +234,6 @@ export default function Header(props) {
               <Typography className={classes.title} variant="h6">
                 Cost Optimization Repository
               </Typography>
-
               <Hidden only="xs">
                 {displayCreate === true ? (
                   <>
@@ -244,8 +247,8 @@ export default function Header(props) {
                   </>
                 ) : null}
               </Hidden>
-
-              <Button color="inherit">Login</Button>
+              <FeedbackDialog />
+              {/* <Button color="inherit">Feedback?</Button> */}
             </Toolbar>
           </AppBar>
           {search === true ? (

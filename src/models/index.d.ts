@@ -11,6 +11,16 @@ export declare class Post {
   readonly problem?: string;
   readonly solution?: string;
   readonly resources?: string;
+  readonly searchField?: string;
   constructor(init: ModelInit<Post>);
   static copyOf(source: Post, mutator: (draft: MutableModel<Post>) => MutableModel<Post> | void): Post;
+}
+
+export declare class Feedback {
+  readonly id: string;
+  readonly contact?: string;
+  readonly comment?: string;
+  readonly createdAt?: string;
+  constructor(init: ModelInit<Feedback>);
+  static copyOf(source: Feedback, mutator: (draft: MutableModel<Feedback>) => MutableModel<Feedback> | void): Feedback;
 }

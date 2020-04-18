@@ -47,6 +47,7 @@ export default function Home() {
           .problem('contains', searchText)
           .solution('contains', searchText)
           .resources('contains', searchText)
+          .searchField('contains', searchText)
       )
     );
     //console.log(posts);
