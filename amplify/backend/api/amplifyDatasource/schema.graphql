@@ -1,0 +1,11 @@
+type Post @model @searchable {
+  id: ID!
+  service: String
+  feature: String
+  problem: String!
+  solution: String
+  resources: String
+  views: Int
+  likes: Int
+  dislikes: Int
+}
