@@ -18,6 +18,8 @@ import { useHistory } from 'react-router-dom';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Post } from '../../models';
 
+import logo from '../../assets/logo.png';
+
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -47,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  toolbarMargin: {
+    ...theme.mixins.toolbar,
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -55,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     display: 'none',
+  },
+  logo: {
+    height: '2em',
+    marginRight: 20,
   },
 }));
 
@@ -182,7 +191,7 @@ export default function Header(props) {
 
   const displayCreate = false || createButton;
 
-  let topMargin = '6rem';
+  let topMargin = '6rem'; ///'6rem';
 
   if (!search) {
     topMargin = '0';
@@ -198,7 +207,9 @@ export default function Header(props) {
               <Hidden smUp>
                 <MenuButton />
               </Hidden>
-
+              <Hidden xsDown>
+                <img alt="company-logo" src={logo} className={classes.logo} />
+              </Hidden>
               <Typography className={classes.title} variant="h6">
                 Cost Optimization Repository
               </Typography>
@@ -225,7 +236,15 @@ export default function Header(props) {
       </ElevationScroll>
 
       <Toolbar />
-      <Box style={{ marginTop: topMargin, padding: 15 }}>{children}</Box>
+      <Box
+        className={classes.toolbarMargin}
+        style={{
+          marginTop: topMargin,
+          padding: 15,
+        }}
+      >
+        {children}
+      </Box>
     </>
   );
 }

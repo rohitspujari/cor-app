@@ -101,7 +101,7 @@ export default function NewPost() {
         label={'Resources'}
         source={resources}
       />
-      <Box style={{ float: 'right', marginTop: 10 }}>
+      <Box style={{ float: 'right', marginTop: 10, marginBottom: 10 }}>
         <Button
           onClick={handleSave}
           style={{ marginRight: 10 }}
