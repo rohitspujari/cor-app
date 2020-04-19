@@ -13,6 +13,7 @@ export const createPost = /* GraphQL */ `
       problem
       solution
       resources
+      user
       searchField
       _version
       _deleted
@@ -32,6 +33,7 @@ export const updatePost = /* GraphQL */ `
       problem
       solution
       resources
+      user
       searchField
       _version
       _deleted
@@ -51,6 +53,7 @@ export const deletePost = /* GraphQL */ `
       problem
       solution
       resources
+      user
       searchField
       _version
       _deleted

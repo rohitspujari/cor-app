@@ -21,6 +21,7 @@ export const syncPosts = /* GraphQL */ `
         problem
         solution
         resources
+        user
         searchField
         _version
         _deleted
@@ -40,6 +41,7 @@ export const getPost = /* GraphQL */ `
       problem
       solution
       resources
+      user
       searchField
       _version
       _deleted
@@ -61,6 +63,7 @@ export const listPosts = /* GraphQL */ `
         problem
         solution
         resources
+        user
         searchField
         _version
         _deleted
