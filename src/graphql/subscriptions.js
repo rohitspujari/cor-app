@@ -10,6 +10,7 @@ export const onCreatePost = /* GraphQL */ `
       problem
       solution
       resources
+      searchField
       _version
       _deleted
       _lastChangedAt
@@ -25,6 +26,7 @@ export const onUpdatePost = /* GraphQL */ `
       problem
       solution
       resources
+      searchField
       _version
       _deleted
       _lastChangedAt
@@ -40,6 +42,46 @@ export const onDeletePost = /* GraphQL */ `
       problem
       solution
       resources
+      searchField
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateFeedback = /* GraphQL */ `
+  subscription OnCreateFeedback {
+    onCreateFeedback {
+      id
+      contact
+      comment
+      createdAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateFeedback = /* GraphQL */ `
+  subscription OnUpdateFeedback {
+    onUpdateFeedback {
+      id
+      contact
+      comment
+      createdAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteFeedback = /* GraphQL */ `
+  subscription OnDeleteFeedback {
+    onDeleteFeedback {
+      id
+      contact
+      comment
+      createdAt
       _version
       _deleted
       _lastChangedAt

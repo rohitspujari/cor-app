@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -16,19 +16,24 @@ import { blue } from '@material-ui/core/colors';
 import { DataStore } from '@aws-amplify/datastore';
 import { Feedback } from '../../models';
 import { TextField, Container, Box } from '@material-ui/core';
+import UserContext from '../UserContext';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
-const initialState = {
-  contact: null,
-  comment: null,
-};
-
 function SimpleDialog(props) {
+  const user = useContext(UserContext);
+  //console.log(user);
   const { onClose, selectedValue, open } = props;
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState({});
 
   const { contact, comment } = values;
+
+  useEffect(() => {
+    //console.log(user);
+    if (user) {
+      setValues({ ...values, contact: user.username });
+    }
+  }, [user]);
 
   const handleChange = (name) => (e) => {
     setValues({ ...values, [name]: e.target.value });
@@ -61,15 +66,8 @@ function SimpleDialog(props) {
       </DialogTitle>
       <Container>
         <TextField
-          onChange={handleChange('contact')}
-          style={{ marginBottom: 10 }}
-          helperText="Please leave your name and email if you would like us to follow up."
-          label="Contact"
-          variant="outlined"
-          fullWidth
-        />
-        <TextField
           onChange={handleChange('comment')}
+          value={values.comment}
           style={{ marginBottom: 10 }}
           helperText="We appreciate your comments."
           label="Comments"
@@ -78,10 +76,19 @@ function SimpleDialog(props) {
           variant="outlined"
           fullWidth
         />
+        <TextField
+          value={values.contact}
+          onChange={handleChange('contact')}
+          style={{ marginBottom: 10 }}
+          helperText="Please leave your name and email if you would like us to follow up."
+          label="Contact"
+          variant="outlined"
+          fullWidth
+        />
 
         <Button
           onClick={handleSubmit}
-          style={{ float: 'right', marginBottom: 10 }}
+          style={{ float: 'right', marginBottom: 20 }}
           color="primary"
           variant="contained"
         >
@@ -113,7 +120,13 @@ export default function FeedbackDialog() {
 
   return (
     <>
-      <Button color="inherit" onClick={handleClickOpen}>
+      <Button
+        style={{ marginLeft: 10 }}
+        variant="outlined"
+        disableRipple
+        color="secondary"
+        onClick={handleClickOpen}
+      >
         Feedback?
       </Button>
       <SimpleDialog

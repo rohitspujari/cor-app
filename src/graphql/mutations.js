@@ -13,6 +13,7 @@ export const createPost = /* GraphQL */ `
       problem
       solution
       resources
+      searchField
       _version
       _deleted
       _lastChangedAt
@@ -31,6 +32,7 @@ export const updatePost = /* GraphQL */ `
       problem
       solution
       resources
+      searchField
       _version
       _deleted
       _lastChangedAt
@@ -49,6 +51,55 @@ export const deletePost = /* GraphQL */ `
       problem
       solution
       resources
+      searchField
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createFeedback = /* GraphQL */ `
+  mutation CreateFeedback(
+    $input: CreateFeedbackInput!
+    $condition: ModelFeedbackConditionInput
+  ) {
+    createFeedback(input: $input, condition: $condition) {
+      id
+      contact
+      comment
+      createdAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateFeedback = /* GraphQL */ `
+  mutation UpdateFeedback(
+    $input: UpdateFeedbackInput!
+    $condition: ModelFeedbackConditionInput
+  ) {
+    updateFeedback(input: $input, condition: $condition) {
+      id
+      contact
+      comment
+      createdAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteFeedback = /* GraphQL */ `
+  mutation DeleteFeedback(
+    $input: DeleteFeedbackInput!
+    $condition: ModelFeedbackConditionInput
+  ) {
+    deleteFeedback(input: $input, condition: $condition) {
+      id
+      contact
+      comment
+      createdAt
       _version
       _deleted
       _lastChangedAt

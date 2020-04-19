@@ -32,7 +32,7 @@ export default function FeedbackPage() {
         data={{
           contact: 'Contact',
           comment: 'Feedback',
-          createdAt: 'Submitted',
+          createdAt: 'Date',
         }}
       />
       <Divider />

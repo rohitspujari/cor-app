@@ -10,6 +10,11 @@
             "StackName": "amplify-cor-app-dev-205034",
             "StackId": "arn:aws:cloudformation:us-east-1:465541050084:stack/amplify-cor-app-dev-205034/016e05c0-8117-11ea-bc6b-1230a5204572",
             "AmplifyAppId": "d1k5u6pfzi7d0i"
+        },
+        "categories": {
+            "auth": {
+                "corappdd186991": {}
+            }
         }
     }
 }

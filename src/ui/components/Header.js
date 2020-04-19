@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,16 +12,20 @@ import { Button, Menu, MenuItem, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import IconButton from '@material-ui/core/IconButton';
+import LogoutIcon from '@material-ui/icons/ExitToApp';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import UploadIcon from '@material-ui/icons/CloudUpload';
 import { useHistory } from 'react-router-dom';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Post } from '../../models';
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
 import logo from '../../assets/logo.png';
+import AuthDialog from './AuthDialog';
+import UserContext from '../UserContext';
+import { useIsAdmin } from '../utils/customHooks';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -142,7 +146,10 @@ function UploadButton() {
         type="file"
       />
       <label htmlFor="contained-button-file">
-        <IconButton
+        <Button disableRipple component="span" color="inherit">
+          Bulk Upload
+        </Button>
+        {/* <IconButton
           component="span"
           //onClick={() => history.push('/upload')}
           //edge="start"
@@ -151,13 +158,14 @@ function UploadButton() {
           aria-label="menu"
         >
           <UploadIcon />
-        </IconButton>
+        </IconButton> */}
       </label>
     </div>
   );
 }
 
 function MenuButton() {
+  const isAdmin = useIsAdmin(useContext(UserContext));
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -188,11 +196,13 @@ function MenuButton() {
       >
         <MenuItem onClick={() => history.push('/create')}>Create New</MenuItem>
         <MenuItem onClick={() => history.push('/feedback')}>Feedback</MenuItem>
-        <MenuItem
-          onClick={async () => await DataStore.delete(Post, Predicates.ALL)}
-        >
-          Delete All
-        </MenuItem>
+        {isAdmin === true ? (
+          <MenuItem
+            onClick={async () => await DataStore.delete(Post, Predicates.ALL)}
+          >
+            Delete All
+          </MenuItem>
+        ) : null}
       </Menu>
     </>
   );
@@ -201,6 +211,35 @@ function MenuButton() {
 export default function Header(props) {
   const classes = useStyles();
   const history = useHistory();
+  const user = useContext(UserContext);
+  const isAdmin = useIsAdmin(user);
+
+  // const [isAdmin, setIsAdmin] = useState(false);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     if (
+  //       user.signInUserSession.accessToken.payload.hasOwnProperty(
+  //         'cognito:groups'
+  //       )
+  //     ) {
+  //       if (
+  //         user.signInUserSession.accessToken.payload['cognito:groups'].includes(
+  //           'admin'
+  //         )
+  //       ) {
+  //         //console.log('hurray!');
+  //         setIsAdmin(true);
+  //       } else {
+  //         setIsAdmin(false);
+  //       }
+  //     }
+  //   } else {
+  //     setIsAdmin(false);
+  //   }
+  // }, [user]);
+
+  //console.log(user);
 
   const {
     children,
@@ -229,7 +268,12 @@ export default function Header(props) {
                 <MenuButton />
               </Hidden>
               <Hidden xsDown>
-                <img alt="company-logo" src={logo} className={classes.logo} />
+                <img
+                  alt="company-logo"
+                  src={logo}
+                  className={classes.logo}
+                  onClick={() => history.push('/')}
+                />
               </Hidden>
               <Typography className={classes.title} variant="h6">
                 Cost Optimization Repository
@@ -237,7 +281,7 @@ export default function Header(props) {
               <Hidden only="xs">
                 {displayCreate === true ? (
                   <>
-                    <UploadButton />
+                    {isAdmin === true ? <UploadButton /> : null}
                     <Button
                       onClick={() => history.push('/create')}
                       color="inherit"
@@ -247,8 +291,26 @@ export default function Header(props) {
                   </>
                 ) : null}
               </Hidden>
+              {/* <Button color="inherit">Login</Button> */}
+              {user == null ? (
+                <AuthDialog
+                // onSignIn={() => setIsLoggedIn(true)}
+                />
+              ) : (
+                <Button
+                  onClick={async () => {
+                    await Auth.signOut();
+                    //setIsLoggedIn(false);
+                  }}
+                  disableRipple
+                  color="inherit"
+                  //variant="outlined"
+                  startIcon={<LogoutIcon />}
+                >
+                  {user.username}
+                </Button>
+              )}
               <FeedbackDialog />
-              {/* <Button color="inherit">Feedback?</Button> */}
             </Toolbar>
           </AppBar>
           {search === true ? (
