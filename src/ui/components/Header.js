@@ -197,8 +197,8 @@ function MenuButton() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => history.push('/create')}>Create New</MenuItem>
-        <MenuItem onClick={() => history.push('/feedback')}>Feedback</MenuItem>
+        {/* <MenuItem onClick={() => history.push('/create')}>Create New</MenuItem> */}
+        {/* <MenuItem onClick={() => history.push('/feedback')}>Feedback</MenuItem> */}
         {isAdmin === true ? (
           <MenuItem
             onClick={async () => await DataStore.delete(Post, Predicates.ALL)}
@@ -282,6 +282,17 @@ export default function Header(props) {
                 Cost Optimization Repository
               </Typography>
               <Hidden only="xs">
+                {isAdmin === true ? (
+                  <Button
+                    disableRipple
+                    onClick={() => history.push('/feedback')}
+                    color="inherit"
+                  >
+                    Feedback
+                  </Button>
+                ) : null}
+              </Hidden>
+              <Hidden only="xs">
                 {displayCreate === true && user ? (
                   <>
                     {isAdmin === true ? <UploadButton /> : null}
@@ -295,24 +306,26 @@ export default function Header(props) {
                 ) : null}
               </Hidden>
               {/* <Button color="inherit">Login</Button> */}
-              {user == null ? (
-                <AuthDialog
-                // onSignIn={() => setIsLoggedIn(true)}
-                />
-              ) : (
-                <Button
-                  onClick={async () => {
-                    await Auth.signOut();
-                    //setIsLoggedIn(false);
-                  }}
-                  disableRipple
-                  color="inherit"
-                  //variant="outlined"
-                  startIcon={<LogoutIcon />}
-                >
-                  {user.username}
-                </Button>
-              )}
+              <Hidden only="xs">
+                {user == null ? (
+                  <AuthDialog
+                  // onSignIn={() => setIsLoggedIn(true)}
+                  />
+                ) : (
+                  <Button
+                    onClick={async () => {
+                      await Auth.signOut();
+                      //setIsLoggedIn(false);
+                    }}
+                    disableRipple
+                    color="inherit"
+                    //variant="outlined"
+                    startIcon={<LogoutIcon />}
+                  >
+                    {user.username}
+                  </Button>
+                )}
+              </Hidden>
               <FeedbackDialog />
             </Toolbar>
           </AppBar>

@@ -6,6 +6,7 @@ import {
   Typography,
   TextField,
   Box,
+  Chip,
   Button,
   IconButton,
 } from '@material-ui/core';
@@ -85,8 +86,14 @@ export default function PostDetail(props) {
               )}
             />
           ) : (
-            <Paper elevation={0} style={{ padding: 10 }}>
-              <Typography>{`Service: ${service}`}</Typography>
+            // <Chip
+            //   //size="small"
+            //   label={service}
+            //   variant="default"
+            //   color="primary"
+            // />
+            <Paper elevation={0} variant="outlined" style={{ padding: 10 }}>
+              <Typography>{`${service}`}</Typography>
             </Paper>
           )}
           {/* </Paper> */}
@@ -102,8 +109,14 @@ export default function PostDetail(props) {
               variant="outlined"
             />
           ) : (
-            <Paper elevation={0} style={{ padding: 10 }}>
-              <Typography>{`Feature: ${feature}`}</Typography>
+            // <Chip
+            //   //size="small"
+            //   label={feature}
+            //   variant="default"
+            //   color="default"
+            // />
+            <Paper elevation={0} variant="outlined" style={{ padding: 10 }}>
+              <Typography>{`${feature}`}</Typography>
             </Paper>
           )}
         </Grid>

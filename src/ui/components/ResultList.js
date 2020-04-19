@@ -74,7 +74,7 @@ export default function ResultList(props) {
               color="textSecondary"
               //display="block"
               variant="body2"
-            >{`${user}`}</Typography>
+            >{`${user ? user : ''}`}</Typography>
           </Grid>
         </Grid>
       </Card>
