@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProcessExcel = (file) => {
+const ProcessExcel = (file, user) => {
   var reader = new FileReader();
 
   reader.onload = (e) => {
@@ -91,7 +91,7 @@ const ProcessExcel = (file) => {
       //var json_object = JSON.stringify(XL_row_object);
       //console.log(XL_row_object);
 
-      InsertData(XL_row_object);
+      InsertData(XL_row_object, user);
     });
   };
 
@@ -102,7 +102,7 @@ const ProcessExcel = (file) => {
   reader.readAsBinaryString(file);
 };
 
-const InsertData = (data) => {
+const InsertData = (data, user) => {
   data.map(async ({ Service, Feature, Problem, Solution, Resources }) => {
     const input = {
       service: Service,
@@ -120,6 +120,7 @@ const InsertData = (data) => {
         problem: Problem,
         solution: Solution,
         resources: Resources,
+        user: user.username,
         searchField: `${Service.toLowerCase()} ${Feature.toLowerCase()} ${Problem.toLowerCase()} ${Solution.toLowerCase()} ${Resources.toLowerCase()}`,
       })
     );
@@ -129,9 +130,11 @@ const InsertData = (data) => {
 function UploadButton() {
   const classes = useStyles();
 
+  const user = useContext(UserContext);
+
   const handleUpload = (e) => {
     const file = e.target.files[0];
-    ProcessExcel(file);
+    ProcessExcel(file, user);
   };
 
   return (
@@ -279,7 +282,7 @@ export default function Header(props) {
                 Cost Optimization Repository
               </Typography>
               <Hidden only="xs">
-                {displayCreate === true ? (
+                {displayCreate === true && user ? (
                   <>
                     {isAdmin === true ? <UploadButton /> : null}
                     <Button

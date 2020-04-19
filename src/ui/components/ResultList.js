@@ -14,44 +14,69 @@ import {
 
 export default function ResultList(props) {
   const {
-    data: { id, service, feature, problem },
+    data: { id, service, feature, problem, user },
   } = props;
 
   const preventDefault = (event) => event.preventDefault();
   return (
     <>
       <Card
-        //variant="outlined"
+        variant="outlined"
         elevation={0}
-        square
+        //square
         style={{ padding: 10, marginBottom: 10 }}
       >
-        <Grid
-          style={{ marginBottom: 0 }}
-          container
-          justify="flex-start"
-          spacing={2}
-        >
-          <Grid item>
-            <Chip label={service} variant="outlined" color="primary" />
-            {/* <Typography>Billing & Accounting</Typography> */}
-          </Grid>
-          <Grid item>
-            <Chip label={feature} variant="outlined" color="secondary" />
-          </Grid>
-        </Grid>
         <Typography
           variant="h6"
           component={Link}
           to={`/post/${id}`}
-          color="primary"
+          color="textPrimary"
           style={{ textDecoration: 'none' }}
         >
           {/* <Link href="#" c to={`/case/${id}`} onClick={preventDefault}> */}
           {problem}
           {/* </Link> */}
         </Typography>
-        {/* <Typography>Views: 5</Typography> */}
+        <Grid style={{ marginTop: 10 }} container>
+          <Grid
+            item
+            xs={9}
+            container
+            justify="flex-start"
+            alignItems="flex-end"
+            spacing={2}
+          >
+            <Grid item>
+              <Chip
+                size="small"
+                label={service}
+                variant="default"
+                color="primary"
+              />
+              {/* <Typography>Billing & Accounting</Typography> */}
+            </Grid>
+            <Grid item>
+              <Chip
+                size="small"
+                label={feature}
+                variant="default"
+                color="default"
+              />
+            </Grid>
+          </Grid>
+          <Grid item xs={3} container justify="flex-end" alignItems="flex-end">
+            {/* <Typography
+              style={{ marginRight: 5 }}
+              //display="block"
+              variant="body2"
+            >{`Contributed by`}</Typography> */}
+            <Typography
+              color="textSecondary"
+              //display="block"
+              variant="body2"
+            >{`${user}`}</Typography>
+          </Grid>
+        </Grid>
       </Card>
     </>
   );

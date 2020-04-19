@@ -11,6 +11,7 @@ export declare class Post {
   readonly problem?: string;
   readonly solution?: string;
   readonly resources?: string;
+  readonly user?: string;
   readonly searchField?: string;
   constructor(init: ModelInit<Post>);
   static copyOf(source: Post, mutator: (draft: MutableModel<Post>) => MutableModel<Post> | void): Post;

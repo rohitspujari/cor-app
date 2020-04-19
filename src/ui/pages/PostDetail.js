@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import {
   Grid,
@@ -22,11 +22,14 @@ import DeleteAlertDialog from '../components/DeleteAlertDialog';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import SERVICES from '../utils/aws_services';
+import UserContext from '../UserContext';
 
 export default function PostDetail(props) {
+  const user = useContext(UserContext);
   const [originalPost, setOriginalPost] = useState(null);
   const [post, setPost] = useState(null);
   const [isEdited, setIsEdited] = React.useState(false);
+  const [canEdit, setCanEdit] = useState(false);
   const history = useHistory();
 
   const {
@@ -43,7 +46,13 @@ export default function PostDetail(props) {
     const post = await DataStore.query(Post, (c) => c.id('eq', number));
     setOriginalPost(post[0]);
     setPost(post[0]);
+    //setCanEdit(post[0].user === user.username);
+    //console.log(post[0].username, user.username);
   };
+
+  useEffect(() => {
+    if (user && post) setCanEdit(post.user === user.username);
+  }, [post, user]);
 
   useEffect(() => {
     getPost();
@@ -129,41 +138,43 @@ export default function PostDetail(props) {
           <ThumbsDownIcon></ThumbsDownIcon>
         </IconButton>
       </Grid>
-      <Box style={{ float: 'right', marginBottom: 10 }}>
-        {isEdited === false ? (
-          <DeleteAlertDialog
-            onConfirmDelete={async () => {
-              await DataStore.delete(post);
-              history.push('/');
+      {canEdit === true ? (
+        <Box style={{ float: 'right', marginBottom: 10 }}>
+          {isEdited === false ? (
+            <DeleteAlertDialog
+              onConfirmDelete={async () => {
+                await DataStore.delete(post);
+                history.push('/');
+              }}
+            />
+          ) : null}
+          <Button
+            style={{ marginLeft: 10 }}
+            onClick={async () => {
+              if (isEdited === true) {
+                // edit state
+                //console.log(originalPost, post);
+                await DataStore.save(
+                  Post.copyOf(originalPost, (updated) => {
+                    //console.log(originalPost);
+                    updated.service = service;
+                    updated.feature = feature;
+                    updated.problem = problem;
+                    updated.solution = solution;
+                    updated.resources = resources;
+                    updated.searchField = `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`;
+                  })
+                );
+              }
+              setIsEdited(!isEdited);
             }}
-          />
-        ) : null}
-        <Button
-          style={{ marginLeft: 10 }}
-          onClick={async () => {
-            if (isEdited === true) {
-              // edit state
-              //console.log(originalPost, post);
-              await DataStore.save(
-                Post.copyOf(originalPost, (updated) => {
-                  //console.log(originalPost);
-                  updated.service = service;
-                  updated.feature = feature;
-                  updated.problem = problem;
-                  updated.solution = solution;
-                  updated.resources = resources;
-                  updated.searchField = `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`;
-                })
-              );
-            }
-            setIsEdited(!isEdited);
-          }}
-          variant="contained"
-          color="primary"
-        >
-          {isEdited === true ? 'Save' : 'Edit'}
-        </Button>
-      </Box>
+            variant="contained"
+            color="primary"
+          >
+            {isEdited === true ? 'Save' : 'Edit'}
+          </Button>
+        </Box>
+      ) : null}
     </Header>
   );
 }

@@ -28,3 +28,5 @@ export function useIsAdmin(user) {
 
   return isAdmin;
 }
+
+export function canEdit(user, post) {}

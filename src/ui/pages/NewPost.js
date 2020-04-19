@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Grid, Button, Box, TextField } from '@material-ui/core';
 import Header from '../components/Header';
 import Section from '../components/Section';
@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { DataStore } from '@aws-amplify/datastore';
 import { Post } from '../../models';
 import SERVICES from '../utils/aws_services';
+import UserContext from '../UserContext';
 
 const initialState = {
   service: 'EC2',
@@ -22,6 +23,8 @@ const initialState = {
 };
 
 export default function NewPost() {
+  const user = useContext(UserContext);
+
   const [values, setValues] = useState(initialState);
   const history = useHistory();
 
@@ -46,6 +49,7 @@ export default function NewPost() {
         problem,
         solution,
         resources,
+        user: user.username,
         searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
       })
     );

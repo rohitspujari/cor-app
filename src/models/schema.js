@@ -45,6 +45,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "user": {
+                    "name": "user",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "searchField": {
                     "name": "searchField",
                     "isArray": false,
@@ -106,5 +113,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "58c7e8b776f2d862d0f78bc60e36969c"
+    "version": "47039d83e2eb90f9deda9cfc8d8e37e3"
 };

@@ -17,7 +17,11 @@ export default function Section(props) {
   const [state, setState] = useState(true); // true = saved-state => display edit icon, false = edit-state => display save icon
   //const [state, setState] = useState(!editable);
   return (
-    <Paper elevation={0} style={{ padding: 10, marginTop: 10 }}>
+    <Paper
+      elevation={0}
+      variant="outlined"
+      style={{ padding: 10, marginTop: 10 }}
+    >
       <Grid container spacing={2} alignItems="center" justify="space-between">
         <Grid item xs={11}>
           <Typography variant="h6" color="secondary">

@@ -5,6 +5,7 @@ type Post @model {
   problem: String
   solution: String
   resources: String
+  user: String
   searchField: String
 }
 
