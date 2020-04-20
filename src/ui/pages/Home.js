@@ -32,7 +32,7 @@ export default function Home() {
   const searchPosts = async () => {
     const query = `query SearchPosts {
       searchPosts(filter: {
-        searchField: { wildcard: "*${searchText}*" }       
+        searchField: { wildcard: "*${searchText.toLowerCase()}*" }       
       }, limit: 200) {
         items {
           id
@@ -52,7 +52,7 @@ export default function Home() {
         },
       } = await API.graphql(graphqlOperation(query));
 
-      console.log(items, searchText);
+      // console.log(items, searchText);
 
       setPosts(items);
     } catch (e) {
