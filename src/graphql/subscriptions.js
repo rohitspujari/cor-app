@@ -12,9 +12,6 @@ export const onCreatePost = /* GraphQL */ `
       resources
       user
       searchField
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -29,9 +26,6 @@ export const onUpdatePost = /* GraphQL */ `
       resources
       user
       searchField
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -46,9 +40,6 @@ export const onDeletePost = /* GraphQL */ `
       resources
       user
       searchField
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -59,9 +50,6 @@ export const onCreateFeedback = /* GraphQL */ `
       contact
       comment
       createdAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -72,9 +60,6 @@ export const onUpdateFeedback = /* GraphQL */ `
       contact
       comment
       createdAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -85,9 +70,6 @@ export const onDeleteFeedback = /* GraphQL */ `
       contact
       comment
       createdAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

@@ -12,20 +12,28 @@ export default function Home() {
 
   const getPosts = async () => {
     try {
-      const posts = await DataStore.query(Post, Predicates.ALL, {
-        page: 0,
-        limit: 100,
-      });
-      setPosts(posts);
+      // const posts = await DataStore.query(Post, Predicates.ALL, {
+      //   page: 0,
+      //   limit: 100,
+      // });
+      const {
+        data: {
+          listPosts: { items },
+        },
+      } = await API.graphql(
+        graphqlOperation(queries.listPosts, { limit: 300 })
+      );
+      //console.log(items);
+
+      setPosts(items);
     } catch {}
   };
 
   const searchPosts = async () => {
     const query = `query SearchPosts {
       searchPosts(filter: {
-        service: { wildcard: "*${searchText}*" }
-        
-      }) {
+        searchField: { wildcard: "*${searchText}*" }       
+      }, limit: 200) {
         items {
           id
           service
@@ -37,21 +45,33 @@ export default function Home() {
       }
     }`;
 
-    //const posts = await API.graphql(graphqlOperation(query));
+    try {
+      const {
+        data: {
+          searchPosts: { items },
+        },
+      } = await API.graphql(graphqlOperation(query));
 
-    const posts = await DataStore.query(Post, (c) =>
-      c.or((c) =>
-        c
-          .service('contains', searchText)
-          .feature('contains', searchText)
-          .problem('contains', searchText)
-          .solution('contains', searchText)
-          .resources('contains', searchText)
-          .searchField('contains', searchText)
-      )
-    );
+      console.log(items, searchText);
+
+      setPosts(items);
+    } catch (e) {
+      console.log(e);
+    }
+
+    // const posts = await DataStore.query(Post, (c) =>
+    //   c.or((c) =>
+    //     c
+    //       .service('contains', searchText)
+    //       .feature('contains', searchText)
+    //       .problem('contains', searchText)
+    //       .solution('contains', searchText)
+    //       .resources('contains', searchText)
+    //       .searchField('contains', searchText)
+    //   )
+    // );
     //console.log(posts);
-    setPosts(posts);
+    //setPosts(posts);
   };
 
   useEffect(() => {

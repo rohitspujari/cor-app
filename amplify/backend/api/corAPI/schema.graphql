@@ -1,4 +1,4 @@
-type Post @model {
+type Post @model @searchable {
   id: ID!
   service: String
   feature: String

@@ -105,25 +105,27 @@ const ProcessExcel = (file, user) => {
 const InsertData = (data, user) => {
   data.map(async ({ Service, Feature, Problem, Solution, Resources }) => {
     const input = {
-      service: Service,
-      feature: Feature,
-      problem: Problem,
-      solution: Solution,
-      resources: Resources,
+      service: Service || '',
+      feature: Feature || '',
+      problem: Problem || '',
+      solution: Solution || '',
+      resources: Resources || '',
+      user: user.username || '',
+      searchField: `${Service.toLowerCase()} ${Feature.toLowerCase()} ${Problem.toLowerCase()} ${Solution.toLowerCase()} ${Resources.toLowerCase()}`,
     };
 
-    //await API.graphql(graphqlOperation(mutations.createPost, { input }));
-    await DataStore.save(
-      new Post({
-        service: Service,
-        feature: Feature,
-        problem: Problem,
-        solution: Solution,
-        resources: Resources,
-        user: user.username,
-        searchField: `${Service.toLowerCase()} ${Feature.toLowerCase()} ${Problem.toLowerCase()} ${Solution.toLowerCase()} ${Resources.toLowerCase()}`,
-      })
-    );
+    await API.graphql(graphqlOperation(mutations.createPost, { input }));
+    // await DataStore.save(
+    //   new Post({
+    //     service: Service,
+    //     feature: Feature,
+    //     problem: Problem,
+    //     solution: Solution,
+    //     resources: Resources,
+    //     user: user.username,
+    //     searchField: `${Service.toLowerCase()} ${Feature.toLowerCase()} ${Problem.toLowerCase()} ${Solution.toLowerCase()} ${Resources.toLowerCase()}`,
+    //   })
+    // );
   });
 };
 

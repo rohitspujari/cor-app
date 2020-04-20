@@ -15,9 +15,6 @@ export const createPost = /* GraphQL */ `
       resources
       user
       searchField
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -35,9 +32,6 @@ export const updatePost = /* GraphQL */ `
       resources
       user
       searchField
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -55,9 +49,6 @@ export const deletePost = /* GraphQL */ `
       resources
       user
       searchField
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -71,9 +62,6 @@ export const createFeedback = /* GraphQL */ `
       contact
       comment
       createdAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -87,9 +75,6 @@ export const updateFeedback = /* GraphQL */ `
       contact
       comment
       createdAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -103,9 +88,6 @@ export const deleteFeedback = /* GraphQL */ `
       contact
       comment
       createdAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

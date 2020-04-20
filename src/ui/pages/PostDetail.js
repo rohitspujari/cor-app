@@ -21,6 +21,9 @@ import { Post } from '../../models';
 import { useHistory } from 'react-router-dom';
 import DeleteAlertDialog from '../components/DeleteAlertDialog';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
 
 import SERVICES from '../utils/aws_services';
 import UserContext from '../UserContext';
@@ -44,11 +47,18 @@ export default function PostDetail(props) {
   };
 
   const getPost = async () => {
-    const post = await DataStore.query(Post, (c) => c.id('eq', number));
-    setOriginalPost(post[0]);
-    setPost(post[0]);
-    //setCanEdit(post[0].user === user.username);
-    //console.log(post[0].username, user.username);
+    try {
+      const {
+        data: { getPost },
+      } = await API.graphql(graphqlOperation(queries.getPost, { id: number }));
+      //console.log(getPost);
+      setOriginalPost(getPost);
+      setPost(getPost);
+    } catch {}
+
+    //const post = await DataStore.query(Post, (c) => c.id('eq', number));
+    //setOriginalPost(post[0]);
+    //setPost(post[0]);
   };
 
   useEffect(() => {
@@ -156,7 +166,12 @@ export default function PostDetail(props) {
           {isEdited === false ? (
             <DeleteAlertDialog
               onConfirmDelete={async () => {
-                await DataStore.delete(post);
+                await API.graphql(
+                  graphqlOperation(mutations.deletePost, {
+                    input: { id: post.id },
+                  })
+                );
+                //await DataStore.delete(post);
                 history.push('/');
               }}
             />
@@ -167,17 +182,32 @@ export default function PostDetail(props) {
               if (isEdited === true) {
                 // edit state
                 //console.log(originalPost, post);
-                await DataStore.save(
-                  Post.copyOf(originalPost, (updated) => {
-                    //console.log(originalPost);
-                    updated.service = service;
-                    updated.feature = feature;
-                    updated.problem = problem;
-                    updated.solution = solution;
-                    updated.resources = resources;
-                    updated.searchField = `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`;
-                  })
+
+                const input = {
+                  id: post.id,
+                  service,
+                  feature,
+                  problem,
+                  solution,
+                  resources,
+                  searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
+                };
+
+                await API.graphql(
+                  graphqlOperation(mutations.updatePost, { input })
                 );
+
+                // await DataStore.save(
+                //   Post.copyOf(originalPost, (updated) => {
+                //     //console.log(originalPost);
+                //     updated.service = service;
+                //     updated.feature = feature;
+                //     updated.problem = problem;
+                //     updated.solution = solution;
+                //     updated.resources = resources;
+                //     updated.searchField = `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`;
+                //   })
+                // );
               }
               setIsEdited(!isEdited);
             }}

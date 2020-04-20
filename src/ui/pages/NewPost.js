@@ -9,6 +9,9 @@ import { Post } from '../../models';
 import SERVICES from '../utils/aws_services';
 import UserContext from '../UserContext';
 
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
+
 const initialState = {
   service: 'EC2',
   feature: 'Reserved Instances',
@@ -42,17 +45,29 @@ export default function NewPost() {
   };
 
   const handleSave = async () => {
-    await DataStore.save(
-      new Post({
-        service,
-        feature,
-        problem,
-        solution,
-        resources,
-        user: user.username,
-        searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
-      })
-    );
+    const input = {
+      service,
+      feature,
+      problem,
+      solution,
+      resources,
+      user: user.username,
+      searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
+    };
+
+    await API.graphql(graphqlOperation(mutations.createPost, { input }));
+
+    // await DataStore.save(
+    //   new Post({
+    //     service,
+    //     feature,
+    //     problem,
+    //     solution,
+    //     resources,
+    //     user: user.username,
+    //     searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
+    //   })
+    // );
   };
 
   return (

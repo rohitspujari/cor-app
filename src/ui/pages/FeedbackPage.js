@@ -13,11 +13,19 @@ export default function FeedbackPage() {
 
   const getFeedbacks = async () => {
     try {
-      const results = await DataStore.query(Feedback, Predicates.ALL, {
-        page: 0,
-        limit: 100,
-      });
-      setFeedbacks(results);
+      const {
+        data: {
+          listFeedbacks: { items },
+        },
+      } = await API.graphql(
+        graphqlOperation(queries.listFeedbacks, { limit: 300 })
+      );
+      setFeedbacks(items);
+      // const results = await DataStore.query(Feedback, Predicates.ALL, {
+      //   page: 0,
+      //   limit: 100,
+      // });
+      // setFeedbacks(results);
     } catch {}
   };
 

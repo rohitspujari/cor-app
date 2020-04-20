@@ -1,37 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const syncPosts = /* GraphQL */ `
-  query SyncPosts(
-    $filter: ModelPostFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPosts(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        service
-        feature
-        problem
-        solution
-        resources
-        user
-        searchField
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
@@ -43,9 +12,6 @@ export const getPost = /* GraphQL */ `
       resources
       user
       searchField
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -65,39 +31,8 @@ export const listPosts = /* GraphQL */ `
         resources
         user
         searchField
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncFeedbacks = /* GraphQL */ `
-  query SyncFeedbacks(
-    $filter: ModelFeedbackFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncFeedbacks(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        contact
-        comment
-        createdAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -108,9 +43,6 @@ export const getFeedback = /* GraphQL */ `
       contact
       comment
       createdAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -126,12 +58,36 @@ export const listFeedbacks = /* GraphQL */ `
         contact
         comment
         createdAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
+    }
+  }
+`;
+export const searchPosts = /* GraphQL */ `
+  query SearchPosts(
+    $filter: SearchablePostFilterInput
+    $sort: SearchablePostSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchPosts(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        service
+        feature
+        problem
+        solution
+        resources
+        user
+        searchField
+      }
+      nextToken
+      total
     }
   }
 `;

@@ -17,6 +17,8 @@ import { DataStore } from '@aws-amplify/datastore';
 import { Feedback } from '../../models';
 import { TextField, Container, Box } from '@material-ui/core';
 import UserContext from '../UserContext';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
@@ -44,14 +46,21 @@ function SimpleDialog(props) {
   };
 
   const handleSubmit = async () => {
-    const createdAt = new Date();
-    await DataStore.save(
-      new Feedback({
-        contact,
-        comment,
-        createdAt: createdAt.toUTCString(),
-      })
-    );
+    //const createdAt = new Date();
+    const input = {
+      contact,
+      comment,
+    };
+
+    await API.graphql(graphqlOperation(mutations.createFeedback, { input }));
+
+    // await DataStore.save(
+    //   new Feedback({
+    //     contact,
+    //     comment,
+    //     createdAt: createdAt.toUTCString(),
+    //   })
+    // );
     handleClose();
   };
 
