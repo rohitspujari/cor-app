@@ -1,20 +1,20 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-cor-app-dev-205034-authRole",
-      "UnauthRoleArn": "arn:aws:iam::465541050084:role/amplify-cor-app-dev-205034-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::465541050084:role/amplify-cor-app-dev-205034-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-cor-app-dev-205034-deployment",
-      "UnauthRoleName": "amplify-cor-app-dev-205034-unauthRole",
-      "StackName": "amplify-cor-app-dev-205034",
-      "StackId": "arn:aws:cloudformation:us-east-1:465541050084:stack/amplify-cor-app-dev-205034/016e05c0-8117-11ea-bc6b-1230a5204572",
-      "AmplifyAppId": "d1k5u6pfzi7d0i"
-    },
-    "categories": {
-      "auth": {
-        "corappdd186991": {}
-      }
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-cor-app-dev-205034-authRole",
+            "UnauthRoleArn": "arn:aws:iam::465541050084:role/amplify-cor-app-dev-205034-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::465541050084:role/amplify-cor-app-dev-205034-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-cor-app-dev-205034-deployment",
+            "UnauthRoleName": "amplify-cor-app-dev-205034-unauthRole",
+            "StackName": "amplify-cor-app-dev-205034",
+            "StackId": "arn:aws:cloudformation:us-east-1:465541050084:stack/amplify-cor-app-dev-205034/016e05c0-8117-11ea-bc6b-1230a5204572",
+            "AmplifyAppId": "d1k5u6pfzi7d0i"
+        },
+        "categories": {
+            "auth": {
+                "corappdd186991": {}
+            }
+        }
     }
-  }
 }

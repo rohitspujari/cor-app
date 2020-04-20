@@ -1,5 +1,5 @@
 {
-    "AppSyncApiName": "amplifyDatasource",
+    "AppSyncApiName": "datasourceAPI",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false"
 }
