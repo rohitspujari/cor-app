@@ -16,5 +16,23 @@
                 "corappdd186991": {}
             }
         }
+    },
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-cor-app-master-232753-authRole",
+            "UnauthRoleArn": "arn:aws:iam::465541050084:role/amplify-cor-app-master-232753-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::465541050084:role/amplify-cor-app-master-232753-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-cor-app-master-232753-deployment",
+            "UnauthRoleName": "amplify-cor-app-master-232753-unauthRole",
+            "StackName": "amplify-cor-app-master-232753",
+            "StackId": "arn:aws:cloudformation:us-east-1:465541050084:stack/amplify-cor-app-master-232753/4e4f84a0-82bf-11ea-bb77-0e8a861a6983",
+            "AmplifyAppId": "d2tibocdlde9bi"
+        },
+        "categories": {
+            "auth": {
+                "corappdd186991": {}
+            }
+        }
     }
 }
