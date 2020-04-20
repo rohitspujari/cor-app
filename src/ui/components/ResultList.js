@@ -10,6 +10,7 @@ import {
   Button,
   Card,
   Chip,
+  Hidden,
 } from '@material-ui/core';
 
 export default function ResultList(props) {
@@ -40,7 +41,7 @@ export default function ResultList(props) {
         <Grid style={{ marginTop: 10 }} container>
           <Grid
             item
-            xs={9}
+            xs={10}
             container
             justify="flex-start"
             alignItems="flex-end"
@@ -64,18 +65,26 @@ export default function ResultList(props) {
               />
             </Grid>
           </Grid>
-          <Grid item xs={3} container justify="flex-end" alignItems="flex-end">
-            {/* <Typography
+          <Hidden xsDown>
+            <Grid
+              item
+              xs={2}
+              container
+              justify="flex-end"
+              alignItems="flex-end"
+            >
+              {/* <Typography
               style={{ marginRight: 5 }}
               //display="block"
               variant="body2"
             >{`Contributed by`}</Typography> */}
-            <Typography
-              color="textSecondary"
-              //display="block"
-              variant="body2"
-            >{`${user ? user : ''}`}</Typography>
-          </Grid>
+              <Typography
+                color="textSecondary"
+                //display="block"
+                variant="body2"
+              >{`${user ? user : ''}`}</Typography>
+            </Grid>
+          </Hidden>
         </Grid>
       </Card>
     </>
