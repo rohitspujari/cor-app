@@ -280,9 +280,16 @@ export default function Header(props) {
                   onClick={() => history.push('/')}
                 />
               </Hidden>
-              <Typography className={classes.title} variant="h6">
-                Cost Optimization Repository
-              </Typography>
+              <Hidden xsDown>
+                <Typography className={classes.title} variant="h6">
+                  Cost Optimization Repository
+                </Typography>
+              </Hidden>
+              <Hidden smUp>
+                <Typography className={classes.title} variant="h6">
+                  Optimze Cost
+                </Typography>
+              </Hidden>
               <Hidden only="xs">
                 {isAdmin === true ? (
                   <Button
