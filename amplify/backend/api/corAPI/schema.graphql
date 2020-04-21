@@ -13,5 +13,6 @@ type Feedback @model {
   id: ID!
   contact: String
   comment: String
+  rating: String
   createdAt: String
 }

@@ -42,6 +42,7 @@ export const getFeedback = /* GraphQL */ `
       id
       contact
       comment
+      rating
       createdAt
     }
   }
@@ -57,6 +58,7 @@ export const listFeedbacks = /* GraphQL */ `
         id
         contact
         comment
+        rating
         createdAt
       }
       nextToken

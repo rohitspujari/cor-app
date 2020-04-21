@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
@@ -28,7 +30,7 @@ function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
   const [values, setValues] = useState({});
 
-  const { contact, comment } = values;
+  const { contact, comment, rating } = values;
 
   useEffect(() => {
     //console.log(user);
@@ -50,6 +52,7 @@ function SimpleDialog(props) {
     const input = {
       contact,
       comment,
+      rating,
     };
 
     await API.graphql(graphqlOperation(mutations.createFeedback, { input }));
@@ -94,7 +97,12 @@ function SimpleDialog(props) {
           variant="outlined"
           fullWidth
         />
-
+        <Rating
+          name="size-large"
+          defaultValue={0}
+          size="large"
+          onChange={handleChange('rating')}
+        />
         <Button
           onClick={handleSubmit}
           style={{ float: 'right', marginBottom: 20 }}

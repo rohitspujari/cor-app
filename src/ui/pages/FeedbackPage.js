@@ -39,6 +39,7 @@ export default function FeedbackPage() {
         header={true}
         data={{
           contact: 'Contact',
+          rating: 'Rating',
           comment: 'Feedback',
           createdAt: 'Date',
         }}
