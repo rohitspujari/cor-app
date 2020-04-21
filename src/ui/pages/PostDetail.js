@@ -24,6 +24,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
 
 import SERVICES from '../utils/aws_services';
 import UserContext from '../UserContext';
@@ -45,7 +46,7 @@ export default function PostDetail(props) {
   const [canEdit, setCanEdit] = useState(false);
   const history = useHistory();
 
-  console.log(like);
+  //console.log(like);
 
   const handleChange = (name) => (e) => {
     setPost({ ...post, [name]: e.target.value });
@@ -65,6 +66,21 @@ export default function PostDetail(props) {
     //setOriginalPost(post[0]);
     //setPost(post[0]);
   };
+
+  useEffect(() => {
+    const subscription = API.graphql(
+      graphqlOperation(subscriptions.onUpdatePost)
+    ).subscribe({
+      next: ({
+        value: {
+          data: { onUpdatePost },
+        },
+      }) => setPost(onUpdatePost),
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     if (user && post) setCanEdit(post.user === user.username);
