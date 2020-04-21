@@ -12,6 +12,7 @@ export const getPost = /* GraphQL */ `
       resources
       user
       searchField
+      likes
     }
   }
 `;
@@ -31,6 +32,7 @@ export const listPosts = /* GraphQL */ `
         resources
         user
         searchField
+        likes
       }
       nextToken
     }
@@ -87,6 +89,7 @@ export const searchPosts = /* GraphQL */ `
         resources
         user
         searchField
+        likes
       }
       nextToken
       total

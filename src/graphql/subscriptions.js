@@ -12,6 +12,7 @@ export const onCreatePost = /* GraphQL */ `
       resources
       user
       searchField
+      likes
     }
   }
 `;
@@ -26,6 +27,7 @@ export const onUpdatePost = /* GraphQL */ `
       resources
       user
       searchField
+      likes
     }
   }
 `;
@@ -40,6 +42,7 @@ export const onDeletePost = /* GraphQL */ `
       resources
       user
       searchField
+      likes
     }
   }
 `;
