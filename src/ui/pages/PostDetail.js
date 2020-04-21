@@ -192,7 +192,9 @@ export default function PostDetail(props) {
           >
             <ThumbsUpIcon></ThumbsUpIcon>
           </IconButton>
-          <Typography variant="caption">{numLikes.toString()}</Typography>
+          <Typography variant="caption">
+            {numLikes > 0 ? numLikes : null}
+          </Typography>
         </Grid>
         {/* <IconButton
           onClick={() => {
