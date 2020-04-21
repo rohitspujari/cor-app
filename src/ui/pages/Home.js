@@ -32,7 +32,7 @@ export default function Home() {
   const searchPosts = async () => {
     const query = `query SearchPosts {
       searchPosts(filter: {
-        searchField: { wildcard: "*${searchText.toLowerCase()}*" }       
+        searchField: { wildcard: "*${searchText.trim().toLowerCase()}*" }       
       }, limit: 200) {
         items {
           id
