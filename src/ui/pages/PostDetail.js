@@ -29,18 +29,23 @@ import SERVICES from '../utils/aws_services';
 import UserContext from '../UserContext';
 
 export default function PostDetail(props) {
+  const {
+    match: {
+      params: { number },
+    },
+  } = props;
   const user = useContext(UserContext);
+  const [like, setLike] = useState(
+    window.localStorage.getItem(number) === 'true' ? true : false
+  );
+  const [numLikes, setNumLikes] = useState(0);
   const [originalPost, setOriginalPost] = useState(null);
   const [post, setPost] = useState(null);
   const [isEdited, setIsEdited] = React.useState(false);
   const [canEdit, setCanEdit] = useState(false);
   const history = useHistory();
 
-  const {
-    match: {
-      params: { number },
-    },
-  } = props;
+  console.log(like);
 
   const handleChange = (name) => (e) => {
     setPost({ ...post, [name]: e.target.value });
@@ -63,6 +68,8 @@ export default function PostDetail(props) {
 
   useEffect(() => {
     if (user && post) setCanEdit(post.user === user.username);
+
+    if (post && post.likes !== null) setNumLikes(likes);
   }, [post, user]);
 
   useEffect(() => {
@@ -70,9 +77,11 @@ export default function PostDetail(props) {
   }, []);
 
   if (!post) return null;
-  const { service, feature, problem, solution, resources } = post;
+  const { service, feature, problem, solution, resources, likes } = post;
 
   //console.log(post);
+
+  //console.log(numLikes);
 
   return (
     <Header search={false}>
@@ -153,13 +162,55 @@ export default function PostDetail(props) {
       />
       <Grid container style={{ marginTop: 2 }}>
         <Grid item>
-          <IconButton>
+          <IconButton
+            onClick={async () => {
+              if (!like) {
+                window.localStorage.setItem(number, true);
+                setLike(true);
+                setNumLikes(numLikes + 1);
+                const input = {
+                  id: post.id,
+                  likes: numLikes + 1,
+                };
+                await API.graphql(
+                  graphqlOperation(mutations.updatePost, { input })
+                );
+              } else {
+                window.localStorage.setItem(number, false);
+                setLike(false);
+                setNumLikes(numLikes - 1);
+                const input = {
+                  id: post.id,
+                  likes: numLikes - 1,
+                };
+                await API.graphql(
+                  graphqlOperation(mutations.updatePost, { input })
+                );
+              }
+            }}
+            color={like === true ? `secondary` : `default`}
+          >
             <ThumbsUpIcon></ThumbsUpIcon>
           </IconButton>
+          <Typography variant="caption">
+            {numLikes > 0 ? numLikes : null}
+          </Typography>
         </Grid>
-        <IconButton>
+        {/* <IconButton
+          onClick={() => {
+            if (like) {
+              window.localStorage.setItem(number, false);
+              setLike(false);
+            }
+          }}
+          color={
+            window.localStorage.getItem(number) === 'false'
+              ? `secondary`
+              : `default`
+          }
+        >
           <ThumbsDownIcon></ThumbsDownIcon>
-        </IconButton>
+        </IconButton> */}
       </Grid>
       {canEdit === true ? (
         <Box style={{ float: 'right', marginBottom: 10 }}>
