@@ -61,6 +61,7 @@ export const createFeedback = /* GraphQL */ `
       id
       contact
       comment
+      rating
       createdAt
     }
   }
@@ -74,6 +75,7 @@ export const updateFeedback = /* GraphQL */ `
       id
       contact
       comment
+      rating
       createdAt
     }
   }
@@ -87,6 +89,7 @@ export const deleteFeedback = /* GraphQL */ `
       id
       contact
       comment
+      rating
       createdAt
     }
   }
