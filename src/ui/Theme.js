@@ -18,6 +18,7 @@ export default createMuiTheme({
     background: {
       paper: `#f7f7f7`,
     },
+    success: { main: `${amazonOrange}` },
   },
   typography: {
     h6: {
