@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Grid, Button, Box, TextField } from '@material-ui/core';
+import { Grid, Button, Box, TextField, Snackbar } from '@material-ui/core';
 import Header from '../components/Header';
 import Section from '../components/Section';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -8,6 +8,7 @@ import { DataStore } from '@aws-amplify/datastore';
 import { Post } from '../../models';
 import SERVICES from '../utils/aws_services';
 import UserContext from '../UserContext';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
@@ -25,17 +26,21 @@ const initialState = {
     'To learn more, see the [markdown](https://rexxars.github.io/react-markdown/) tutorial.',
 };
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default function NewPost() {
   const user = useContext(UserContext);
-
   const [values, setValues] = useState(initialState);
+  const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
   const history = useHistory();
 
   const handleChange = (name) => (e) => {
     setValues({ ...values, [name]: e.target.value });
   };
-
-  //console.log(values);
 
   const { service, feature, problem, solution, resources } = values;
 
@@ -45,17 +50,30 @@ export default function NewPost() {
   };
 
   const handleSave = async () => {
+    setIsSaving(true);
     const input = {
-      service,
-      feature,
-      problem,
-      solution,
-      resources,
+      service: service || ' ',
+      feature: feature || ' ',
+      problem: problem || ' ',
+      solution: solution || ' ',
+      resources: resources || ' ',
       user: user.username,
-      searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
+      searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()} ${
+        user.username
+      }`,
     };
 
-    await API.graphql(graphqlOperation(mutations.createPost, { input }));
+    try {
+      await API.graphql(graphqlOperation(mutations.createPost, { input }));
+      setShowSuccess(true);
+      //setIsSaving(false);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+      //alert(JSON.stringify(e));
+    } finally {
+      setIsSaving(false);
+    }
 
     // await DataStore.save(
     //   new Post({
@@ -68,6 +86,16 @@ export default function NewPost() {
     //     searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
     //   })
     // );
+  };
+
+  const handleClose = (event, reason) => {
+    //console.log('closing');
+    // if (reason === 'clickaway') {
+    //   return;
+    // }
+
+    setError(null);
+    setShowSuccess(false);
   };
 
   return (
@@ -124,16 +152,40 @@ export default function NewPost() {
       <Box style={{ float: 'right', marginTop: 10, marginBottom: 10 }}>
         <Button
           onClick={handleSave}
+          disabled={isSaving}
           style={{ marginRight: 10 }}
           variant="contained"
           color="primary"
         >
           Save & Create New
         </Button>
-        <Button onClick={handleSaveExit} variant="contained" color="primary">
+        <Button
+          disabled={isSaving}
+          onClick={handleSaveExit}
+          variant="contained"
+          color="primary"
+        >
           Save
         </Button>
       </Box>
+      <Snackbar
+        open={error ? true : false}
+        autoHideDuration={5000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="error">
+          There was an error
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={showSuccess}
+        autoHideDuration={5000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success">
+          New use case created
+        </Alert>
+      </Snackbar>
     </Header>
   );
 }

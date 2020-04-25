@@ -28,6 +28,7 @@ import * as subscriptions from '../../graphql/subscriptions';
 
 import SERVICES from '../utils/aws_services';
 import UserContext from '../UserContext';
+import LoadingPost from '../components/LoadingPost';
 
 export default function PostDetail(props) {
   const {
@@ -44,6 +45,7 @@ export default function PostDetail(props) {
   const [post, setPost] = useState(null);
   const [isEdited, setIsEdited] = React.useState(false);
   const [canEdit, setCanEdit] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const history = useHistory();
 
   //console.log(like);
@@ -92,7 +94,7 @@ export default function PostDetail(props) {
     getPost();
   }, []);
 
-  if (!post) return null;
+  if (!post) return <LoadingPost />;
   const { service, feature, problem, solution, resources, likes } = post;
 
   //console.log(post);
@@ -245,11 +247,12 @@ export default function PostDetail(props) {
           ) : null}
           <Button
             style={{ marginLeft: 10 }}
+            disabled={isSaving}
             onClick={async () => {
               if (isEdited === true) {
                 // edit state
                 //console.log(originalPost, post);
-
+                setIsSaving(true);
                 const input = {
                   id: post.id,
                   service,
@@ -260,9 +263,16 @@ export default function PostDetail(props) {
                   searchField: `${service.toLowerCase()} ${feature.toLowerCase()} ${problem.toLowerCase()} ${solution.toLowerCase()} ${resources.toLowerCase()}`,
                 };
 
-                await API.graphql(
-                  graphqlOperation(mutations.updatePost, { input })
-                );
+                try {
+                  await API.graphql(
+                    graphqlOperation(mutations.updatePost, { input })
+                  );
+                } catch (e) {
+                  console.log(e);
+                  alert(JSON.stringify(e));
+                } finally {
+                  setIsSaving(false);
+                }
 
                 // await DataStore.save(
                 //   Post.copyOf(originalPost, (updated) => {
