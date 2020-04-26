@@ -49,7 +49,8 @@ export default function NewPost() {
     history.push('/');
   };
 
-  const handleSave = async () => {
+  const handleSave = async (event) => {
+    //console.log(event.target.textContent);
     setIsSaving(true);
     const input = {
       service: service || ' ',
@@ -63,9 +64,13 @@ export default function NewPost() {
       }`,
     };
 
+    //console.log(event.target.textContent);
+    const buttonText = event.target.textContent;
+
     try {
       await API.graphql(graphqlOperation(mutations.createPost, { input }));
       setShowSuccess(true);
+
       //setIsSaving(false);
     } catch (e) {
       console.log(e);
@@ -73,6 +78,7 @@ export default function NewPost() {
       //alert(JSON.stringify(e));
     } finally {
       setIsSaving(false);
+      if (buttonText === 'Save & Exit') history.push('/');
     }
 
     // await DataStore.save(
@@ -149,6 +155,15 @@ export default function NewPost() {
         label={'Resources'}
         source={resources}
       />
+      <Button
+        style={{ marginTop: 10 }}
+        disableRipple
+        onClick={history.goBack}
+        variant="contained"
+        color="primary"
+      >
+        Back
+      </Button>
       <Box style={{ float: 'right', marginTop: 10, marginBottom: 10 }}>
         <Button
           onClick={handleSave}
@@ -161,11 +176,11 @@ export default function NewPost() {
         </Button>
         <Button
           disabled={isSaving}
-          onClick={handleSaveExit}
+          onClick={handleSave}
           variant="contained"
           color="primary"
         >
-          Save
+          Save & Exit
         </Button>
       </Box>
       <Snackbar

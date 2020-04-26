@@ -230,6 +230,15 @@ export default function PostDetail(props) {
           <ThumbsDownIcon></ThumbsDownIcon>
         </IconButton> */}
       </Grid>
+      <Button
+        disableRipple
+        onClick={history.goBack}
+        variant="contained"
+        color="primary"
+      >
+        Back
+      </Button>
+
       {canEdit === true ? (
         <Box style={{ float: 'right', marginBottom: 10 }}>
           {isEdited === false ? (

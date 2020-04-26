@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ResultList from '../components/ResultList';
 import Header from '../components/Header';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Post, Feedback } from '../../models';

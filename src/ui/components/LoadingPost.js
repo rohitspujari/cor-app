@@ -18,9 +18,9 @@ function EmptySection(props) {
         </Grid>
       </Grid>
 
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
+      <Skeleton animation="wave" />
+      <Skeleton animation="wave" />
+      <Skeleton animation="wave" />
     </Paper>
   );
 }
@@ -30,12 +30,12 @@ export default function LoadingPost() {
     <Header search={false}>
       <Grid container spacing={2}>
         <Grid item sm={3} xs={12}>
-          <Skeleton />
-          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation="wave" />
         </Grid>
         <Grid item sm={6} xs={12}>
-          <Skeleton />
-          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation="wave" />
         </Grid>
       </Grid>
       <EmptySection label="Use Case" />
