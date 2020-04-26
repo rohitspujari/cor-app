@@ -111,7 +111,7 @@ export default function Home() {
     );
   }
 
-  if (posts === null) return <LoadingSkeleton />;
+  //if (posts === null) return <LoadingSkeleton />;
 
   return (
     <Header
@@ -120,10 +120,11 @@ export default function Home() {
       onSearchSubmit={searchPosts}
       createButton={true}
     >
-      {/* <SearchBar /> */}
-      {posts.length > 0
-        ? posts.map((data, i) => <ResultListItem data={data} key={i} />)
-        : null}
+      {posts === null ? (
+        <LoadingSkeleton />
+      ) : posts.length > 0 ? (
+        posts.map((data, i) => <ResultListItem data={data} key={i} />)
+      ) : null}
     </Header>
   );
 }
