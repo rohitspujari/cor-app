@@ -274,14 +274,14 @@ export default function Header(props) {
               <Hidden smUp>
                 <MenuButton />
               </Hidden>
-              <Hidden xsDown>
+              {/* <Hidden xsDown>
                 <img
                   alt="company-logo"
                   src={logo}
                   className={classes.logo}
                   onClick={() => history.push('/')}
                 />
-              </Hidden>
+              </Hidden> */}
               <Hidden xsDown>
                 <Typography className={classes.title} variant="h6">
                   Cost Optimization Repository
