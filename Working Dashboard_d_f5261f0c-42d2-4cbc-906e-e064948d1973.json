@@ -290,7 +290,7 @@
           "id": "4700da74-954f-4fd0-a7dd-6cf2d1ed3a16",
           "title": "New Card",
           "description": "New Card Description",
-          "type": "table",
+          "type": "line",
           "data": [],
           "connectionId": "c_fd0a45a1-d27f-4fce-b582-efd11c976f0e",
           "sql": "SELECT title, AVG(id) as AVG_id \nFROM api \n{{ filters | where }}  \nGROUP BY title \nORDER BY title DESC \nLIMIT 10\n",
