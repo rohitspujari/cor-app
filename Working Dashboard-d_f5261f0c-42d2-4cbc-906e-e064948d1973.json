@@ -20,33 +20,11 @@
           "cfg": {
             "type": "bar",
             "data": {
-              "labels": [
-                "California",
-                "New York",
-                "Texas",
-                "Pennsylvania",
-                "Washington",
-                "Illinois",
-                "Ohio",
-                "Florida",
-                "Michigan",
-                "North Carolina"
-              ],
+              "labels": [],
               "datasets": [
                 {
                   "label": "Count",
-                  "data": [
-                    2001,
-                    1128,
-                    985,
-                    587,
-                    506,
-                    492,
-                    469,
-                    383,
-                    255,
-                    249
-                  ]
+                  "data": []
                 }
               ]
             },
@@ -66,11 +44,7 @@
           "customCfg": {
             "type": "bar",
             "data": {
-              "labels": [
-                "Home Office",
-                "Corporate",
-                "Consumer"
-              ],
+              "labels": [],
               "datasets": [
                 {
                   "type": "bar",
@@ -125,31 +99,16 @@
           "customCfg": {
             "type": "bar",
             "data": {
-              "labels": [
-                "Standard Class",
-                "Second Class",
-                "Same Day",
-                "First Class"
-              ],
+              "labels": [],
               "datasets": [
                 {
                   "type": "line",
                   "label": "Count",
-                  "data": [
-                    5968,
-                    1945,
-                    543,
-                    1538
-                  ]
+                  "data": []
                 },
                 {
                   "label": "Max_profit",
-                  "data": [
-                    8399.98,
-                    2799.98,
-                    2229.02,
-                    6719.98
-                  ]
+                  "data": []
                 }
               ]
             },
@@ -164,6 +123,11 @@
               },
               "responsive": true,
               "maintainAspectRatio": false
+            }
+          },
+          "cfg": {
+            "data": {
+              "labels": []
             }
           }
         },
@@ -180,49 +144,16 @@
           "customCfg": {
             "type": "bar",
             "data": {
-              "labels": [
-                "99%",
-                "98%",
-                "97%",
-                "96%",
-                "95%",
-                "94%",
-                "93%",
-                "92%",
-                "91%",
-                "90%"
-              ],
+              "labels": [],
               "datasets": [
                 {
                   "type": "line",
                   "label": "Count",
-                  "data": [
-                    131,
-                    92,
-                    39,
-                    53,
-                    28,
-                    33,
-                    25,
-                    21,
-                    26,
-                    36
-                  ]
+                  "data": []
                 },
                 {
                   "label": "Avg_minimum_nights",
-                  "data": [
-                    2.969465648854962,
-                    4.380434782608695,
-                    2.6666666666666665,
-                    2.018867924528302,
-                    4.428571428571429,
-                    4.212121212121212,
-                    19.16,
-                    2.0476190476190474,
-                    17.076923076923077,
-                    3.4722222222222223
-                  ]
+                  "data": []
                 }
               ]
             },
@@ -237,6 +168,11 @@
               },
               "responsive": true,
               "maintainAspectRatio": false
+            }
+          },
+          "cfg": {
+            "data": {
+              "labels": []
             }
           }
         },
@@ -270,9 +206,16 @@
                   "clamp": true
                 }
               }
+            },
+            "data": {
+              "labels": []
             }
           },
-          "customCfg": null
+          "customCfg": {
+            "data": {
+              "labels": []
+            }
+          }
         },
         {
           "id": "f8817b99-2bbf-406d-af40-7460d438f0bc",
@@ -284,7 +227,16 @@
           "lastSelectedDatabase": "verceldb",
           "lastSelectedTable": "sales_data",
           "sql": "SELECT state, category,  Max(sales) as Min_sales,  max(discount) as AVG_discount, AVG(quantity)*10 as AVG_quantity  FROM sales_data {{ filters | where }}  GROUP BY category, state ORDER BY category, state DESC ",
-          "customCfg": null
+          "customCfg": {
+            "data": {
+              "labels": []
+            }
+          },
+          "cfg": {
+            "data": {
+              "labels": []
+            }
+          }
         },
         {
           "id": "4700da74-954f-4fd0-a7dd-6cf2d1ed3a16",
@@ -305,10 +257,17 @@
                   "clamp": true
                 }
               }
+            },
+            "data": {
+              "labels": []
             }
           },
           "refreshInterval": "",
-          "customCfg": null
+          "customCfg": {
+            "data": {
+              "labels": []
+            }
+          }
         },
         {
           "id": "4a752218-eb0b-4230-b432-75fcfb1aff1b",
@@ -317,7 +276,17 @@
           "type": "bar",
           "data": [],
           "connectionId": "c_fd0a45a1-d27f-4fce-b582-efd11c976f0e",
-          "sql": "SELECT * FROM api {{ filters | where }}  LIMIT 10"
+          "sql": "SELECT * FROM api {{ filters | where }}  LIMIT 10",
+          "cfg": {
+            "data": {
+              "labels": []
+            }
+          },
+          "customCfg": {
+            "data": {
+              "labels": []
+            }
+          }
         }
       ],
       "layout": [
@@ -395,7 +364,73 @@
     }
   ],
   "style": {
-    "dashboard": "    mt-2"
+    "default": {
+      "chart": {
+        "dataset": {
+          "backgroundColor": [
+            "#ddd6fe",
+            "#fecaca",
+            "#fde68a",
+            "#fdba74",
+            "#fda4af"
+          ],
+          "borderColor": [
+            "#a78bfa",
+            "#f87171",
+            "#fbbf24",
+            "#fdba74",
+            "#fb7185"
+          ]
+        },
+        "options": {
+          "plugins": {
+            "tooltip": {
+              "backgroundColor": "#fff",
+              "bodyColor": "#000",
+              "borderWidth": 0.25,
+              "titleColor": "#000",
+              "borderColor": "rgb(128,131,139)",
+              "cornerRadius": 2,
+              "boxPadding": 4
+            }
+          }
+        }
+      }
+    },
+    "dark": {
+      "dashboard": "",
+      "chart": {
+        "dataset": {
+          "backgroundColor": [
+            "#99f6e4",
+            "#e9d5ff",
+            "#fde68a",
+            "#fed7aa",
+            "#fecdd3"
+          ],
+          "borderColor": [
+            "#2dd4bf",
+            "#c084fc",
+            "#fbbf24",
+            "#fdba74",
+            "#fb7185"
+          ]
+        },
+        "options": {
+          "plugins": {
+            "tooltip": {
+              "backgroundColor": "#000",
+              "bodyColor": "#fff",
+              "borderWidth": 0.25,
+              "titleColor": "#fff",
+              "borderColor": "rgb(128,131,139)",
+              "cornerRadius": 2,
+              "boxPadding": 4
+            }
+          }
+        }
+      }
+    }
   },
   "filters": [
     {
