@@ -49,11 +49,7 @@
               }
             }
           },
-          "customCfg": {
-            "data": {
-              "labels": []
-            }
-          },
+          "customCfg": null,
           "refreshInterval": ""
         },
         {
