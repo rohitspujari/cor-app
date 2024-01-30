@@ -154,6 +154,24 @@
               "labels": []
             }
           }
+        },
+        {
+          "id": "521a041f-0bae-4caa-89f1-11fc97c467f5",
+          "title": "API Card",
+          "description": "New Card Description",
+          "type": "bar",
+          "data": [],
+          "connectionId": "c_fd0a45a1-d27f-4fce-b582-efd11c976f0e",
+          "sql": "SELECT title, COUNT(*), AVG(id) as AVG_id FROM api {{ filters | where }}  GROUP BY title ORDER BY title DESC LIMIT 10",
+          "customCfg": null,
+          "cfg": {
+            "options": {
+              "indexAxis": "y"
+            },
+            "data": {
+              "labels": []
+            }
+          }
         }
       ],
       "layout": [
@@ -193,6 +211,16 @@
           "x": 20,
           "y": 0,
           "i": "f8817b99-2bbf-406d-af40-7460d438f0bc",
+          "minW": 10,
+          "moved": false,
+          "static": false
+        },
+        {
+          "w": 20,
+          "h": 7,
+          "x": 0,
+          "y": 14,
+          "i": "521a041f-0bae-4caa-89f1-11fc97c467f5",
           "minW": 10,
           "moved": false,
           "static": false
