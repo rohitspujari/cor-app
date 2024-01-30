@@ -9,7 +9,7 @@
       "cards": [
         {
           "id": "ba4b6599-11cc-4738-a88f-70933db41514",
-          "title": "Visual Card",
+          "title": "New Visual Card",
           "description": "New Card Description",
           "type": "bar",
           "data": [],
@@ -38,98 +38,23 @@
                 }
               },
               "responsive": true,
-              "maintainAspectRatio": false
-            }
-          },
-          "customCfg": {
-            "type": "bar",
-            "data": {
-              "labels": [],
-              "datasets": [
-                {
-                  "type": "bar",
-                  "label": "Count",
-                  "data": []
-                },
-                {
-                  "label": "Max_sales",
-                  "data": []
-                }
-              ]
-            },
-            "options": {
+              "maintainAspectRatio": false,
               "plugins": {
                 "datalabels": {
-                  "display": true
-                },
-                "tooltip": {
-                  "backgroundColor": "#fff",
-                  "bodyColor": "#000",
-                  "borderWidth": 0.25,
-                  "titleColor": "#000",
-                  "borderColor": "rgb(128,131,139)",
-                  "cornerRadius": 2,
-                  "boxPadding": 4
+                  "display": true,
+                  "align": "end",
+                  "anchor": "end",
+                  "clamp": true
                 }
-              },
-              "scales": {
-                "y": {
-                  "beginAtZero": true,
-                  "ticks": {
-                    "precision": 0
-                  }
-                }
-              },
-              "responsive": true,
-              "maintainAspectRatio": false
+              }
             }
           },
-          "refreshInterval": ""
-        },
-        {
-          "id": "ee7c3fb1-63c7-4dde-b4ca-ad2528ea7873",
-          "title": "New Cool Looking Card!",
-          "description": "New Card Description",
-          "type": "bar",
-          "data": [],
-          "connectionId": "c_594ca5ef-93db-43d0-96d3-b6c2c7ccaecf",
-          "lastSelectedDatabase": "verceldb",
-          "sql": "SELECT ship_mode, COUNT(*), MAX(profit) as MAX_profit FROM sales_data GROUP BY ship_mode ORDER BY ship_mode DESC LIMIT 10",
-          "lastSelectedTable": "sales_data",
           "customCfg": {
-            "type": "bar",
-            "data": {
-              "labels": [],
-              "datasets": [
-                {
-                  "type": "line",
-                  "label": "Count",
-                  "data": []
-                },
-                {
-                  "label": "Max_profit",
-                  "data": []
-                }
-              ]
-            },
-            "options": {
-              "scales": {
-                "y": {
-                  "beginAtZero": true,
-                  "ticks": {
-                    "precision": 0
-                  }
-                }
-              },
-              "responsive": true,
-              "maintainAspectRatio": false
-            }
-          },
-          "cfg": {
             "data": {
               "labels": []
             }
-          }
+          },
+          "refreshInterval": ""
         },
         {
           "id": "de39fd7b-8fff-43ad-b966-18c286293403",
@@ -219,70 +144,16 @@
         },
         {
           "id": "f8817b99-2bbf-406d-af40-7460d438f0bc",
-          "title": "Bubble Chart",
-          "description": "New Card Description",
+          "title": "Cool Bubble Chart",
+          "description": "This is a bubble chart description",
           "type": "bubble",
           "data": [],
           "connectionId": "c_594ca5ef-93db-43d0-96d3-b6c2c7ccaecf",
           "lastSelectedDatabase": "verceldb",
           "lastSelectedTable": "sales_data",
           "sql": "SELECT state, category,  Max(sales) as Min_sales,  max(discount) as AVG_discount, AVG(quantity)*10 as AVG_quantity  FROM sales_data {{ filters | where }}  GROUP BY category, state ORDER BY category, state DESC ",
-          "customCfg": {
-            "data": {
-              "labels": []
-            }
-          },
+          "customCfg": null,
           "cfg": {
-            "data": {
-              "labels": []
-            }
-          }
-        },
-        {
-          "id": "4700da74-954f-4fd0-a7dd-6cf2d1ed3a16",
-          "title": "Line Chart Card",
-          "description": "New Card Description",
-          "type": "bar",
-          "data": [],
-          "connectionId": "c_fd0a45a1-d27f-4fce-b582-efd11c976f0e",
-          "sql": "SELECT title, AVG(id) as AVG_id \nFROM api \n{{ filters | where }}  \nGROUP BY title \nORDER BY title DESC \nLIMIT 10\n",
-          "cfg": {
-            "options": {
-              "indexAxis": "y",
-              "plugins": {
-                "datalabels": {
-                  "display": true,
-                  "align": "end",
-                  "anchor": "end",
-                  "clamp": true
-                }
-              }
-            },
-            "data": {
-              "labels": []
-            }
-          },
-          "refreshInterval": "",
-          "customCfg": {
-            "data": {
-              "labels": []
-            }
-          }
-        },
-        {
-          "id": "4a752218-eb0b-4230-b432-75fcfb1aff1b",
-          "title": "New Card",
-          "description": "New Card Description",
-          "type": "bar",
-          "data": [],
-          "connectionId": "c_fd0a45a1-d27f-4fce-b582-efd11c976f0e",
-          "sql": "SELECT * FROM api {{ filters | where }}  LIMIT 10",
-          "cfg": {
-            "data": {
-              "labels": []
-            }
-          },
-          "customCfg": {
             "data": {
               "labels": []
             }
@@ -294,18 +165,8 @@
           "w": 20,
           "h": 7,
           "x": 0,
-          "y": 7,
+          "y": 0,
           "i": "ba4b6599-11cc-4738-a88f-70933db41514",
-          "minW": 10,
-          "moved": false,
-          "static": false
-        },
-        {
-          "w": 28,
-          "h": 7,
-          "x": 20,
-          "y": 14,
-          "i": "ee7c3fb1-63c7-4dde-b4ca-ad2528ea7873",
           "minW": 10,
           "moved": false,
           "static": false
@@ -314,7 +175,7 @@
           "w": 20,
           "h": 7,
           "x": 0,
-          "y": 14,
+          "y": 7,
           "i": "de39fd7b-8fff-43ad-b966-18c286293403",
           "minW": 10,
           "moved": false,
@@ -339,26 +200,6 @@
           "minW": 10,
           "moved": false,
           "static": false
-        },
-        {
-          "w": 20,
-          "h": 7,
-          "x": 0,
-          "y": 0,
-          "i": "4700da74-954f-4fd0-a7dd-6cf2d1ed3a16",
-          "minW": 10,
-          "moved": false,
-          "static": false
-        },
-        {
-          "w": 20,
-          "h": 7,
-          "x": 0,
-          "y": 21,
-          "i": "4a752218-eb0b-4230-b432-75fcfb1aff1b",
-          "minW": 10,
-          "moved": false,
-          "static": false
         }
       ]
     }
@@ -366,6 +207,7 @@
   "style": {
     "default": {
       "chart": {
+        "font": {},
         "dataset": {
           "backgroundColor": [
             "#ddd6fe",
@@ -384,6 +226,12 @@
         },
         "options": {
           "plugins": {
+            "datalabels": {
+              "display": false
+            },
+            "title": {
+              "display": true
+            },
             "tooltip": {
               "backgroundColor": "#fff",
               "bodyColor": "#000",
@@ -392,8 +240,44 @@
               "borderColor": "rgb(128,131,139)",
               "cornerRadius": 2,
               "boxPadding": 4
+            },
+            "legend": {
+              "position": "top",
+              "align": "center",
+              "maxHeight": 0
             }
-          }
+          },
+          "scales": {
+            "y": {
+              "grid": {
+                "display": true
+              },
+              "title": {
+                "display": true,
+                "text": ""
+              },
+              "beginAtZero": true,
+              "ticks": {
+                "precision": 0
+              }
+            },
+            "x": {
+              "grid": {
+                "display": true
+              },
+              "title": {
+                "display": true
+              }
+            }
+          },
+          "layout": {
+            "padding": {
+              "top": -40
+            }
+          },
+          "borderRadius": 1,
+          "responsive": true,
+          "maintainAspectRatio": false
         }
       }
     },
@@ -402,11 +286,11 @@
       "chart": {
         "dataset": {
           "backgroundColor": [
-            "#99f6e4",
-            "#e9d5ff",
-            "#fde68a",
-            "#fed7aa",
-            "#fecdd3"
+            "#ccfbf1",
+            "#f3e8ff",
+            "#fef3c7",
+            "#ffedd5",
+            "#ffe4e6"
           ],
           "borderColor": [
             "#2dd4bf",
@@ -426,6 +310,23 @@
               "borderColor": "rgb(128,131,139)",
               "cornerRadius": 2,
               "boxPadding": 4
+            }
+          },
+          "datalabels": {
+            "display": false
+          },
+          "scales": {
+            "x": {
+              "grid": {
+                "display": true,
+                "color": "#1e293b"
+              }
+            },
+            "y": {
+              "grid": {
+                "display": true,
+                "color": "#1e293b"
+              }
             }
           }
         }
