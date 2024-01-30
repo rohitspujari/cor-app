@@ -42,8 +42,8 @@
               "plugins": {
                 "datalabels": {
                   "display": true,
-                  "align": "end",
-                  "anchor": "end",
+                  "align": "center",
+                  "anchor": "center",
                   "clamp": true
                 }
               }
