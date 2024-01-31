@@ -154,6 +154,32 @@
               "labels": []
             }
           }
+        },
+        {
+          "id": "66fc4444-8257-4e38-bcbf-02bcc21a6ac5",
+          "title": "New Card",
+          "description": "Added API Card",
+          "type": "bar",
+          "data": [],
+          "connectionId": "c_fd0a45a1-d27f-4fce-b582-efd11c976f0e",
+          "sql": "SELECT title, avg(id) FROM api {{ filters | where }}  GROUP BY title ORDER BY title DESC LIMIT 10",
+          "cfg": {
+            "options": {
+              "indexAxis": "y",
+              "plugins": {
+                "datalabels": {
+                  "display": true,
+                  "align": "end",
+                  "anchor": "end",
+                  "clamp": true
+                }
+              }
+            },
+            "data": {
+              "labels": []
+            }
+          },
+          "customCfg": null
         }
       ],
       "layout": [
@@ -193,6 +219,16 @@
           "x": 20,
           "y": 0,
           "i": "f8817b99-2bbf-406d-af40-7460d438f0bc",
+          "minW": 10,
+          "moved": false,
+          "static": false
+        },
+        {
+          "w": 20,
+          "h": 7,
+          "x": 0,
+          "y": 14,
+          "i": "66fc4444-8257-4e38-bcbf-02bcc21a6ac5",
           "minW": 10,
           "moved": false,
           "static": false
