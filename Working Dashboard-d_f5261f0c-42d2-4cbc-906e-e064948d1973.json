@@ -349,6 +349,16 @@
       "database": "verceldb",
       "connectionId": "c_594ca5ef-93db-43d0-96d3-b6c2c7ccaecf",
       "sql": "SELECT postal_code, COUNT(*) FROM sales_data GROUP BY postal_code ORDER BY postal_code ASC LIMIT 50"
+    },
+    {
+      "id": "de35e4e3-ac72-4243-8617-15b319bf3d33",
+      "column": "ship_date",
+      "title": "ship_date",
+      "dataType": "date",
+      "table": "sales_data",
+      "database": "verceldb",
+      "connectionId": "c_594ca5ef-93db-43d0-96d3-b6c2c7ccaecf",
+      "sql": "SELECT min(ship_date) as min, max(ship_date) as max FROM sales_data"
     }
   ]
 }
