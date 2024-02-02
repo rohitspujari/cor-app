@@ -353,7 +353,7 @@
     {
       "id": "de35e4e3-ac72-4243-8617-15b319bf3d33",
       "column": "ship_date",
-      "title": "ship_date",
+      "title": "Ship Date",
       "dataType": "date",
       "table": "sales_data",
       "database": "verceldb",
