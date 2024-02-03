@@ -50,51 +50,9 @@
             }
           },
           "customCfg": null,
-          "refreshInterval": ""
-        },
-        {
-          "id": "de39fd7b-8fff-43ad-b966-18c286293403",
-          "title": "New Card",
-          "description": "New Card Description",
-          "type": "bar",
-          "data": [],
-          "connectionId": "c_594ca5ef-93db-43d0-96d3-b6c2c7ccaecf",
-          "lastSelectedDatabase": "verceldb",
-          "lastSelectedTable": "listings",
-          "sql": "SELECT host_acceptance_rate, COUNT(*), AVG(minimum_nights) as AVG_minimum_nights FROM listings GROUP BY host_acceptance_rate ORDER BY host_acceptance_rate DESC LIMIT 10",
-          "customCfg": {
-            "type": "bar",
-            "data": {
-              "labels": [],
-              "datasets": [
-                {
-                  "type": "line",
-                  "label": "Count",
-                  "data": []
-                },
-                {
-                  "label": "Avg_minimum_nights",
-                  "data": []
-                }
-              ]
-            },
-            "options": {
-              "scales": {
-                "y": {
-                  "beginAtZero": true,
-                  "ticks": {
-                    "precision": 0
-                  }
-                }
-              },
-              "responsive": true,
-              "maintainAspectRatio": false
-            }
-          },
-          "cfg": {
-            "data": {
-              "labels": []
-            }
+          "refreshInterval": "",
+          "preferences": {
+            "filterOnClick": true
           }
         },
         {
@@ -153,6 +111,29 @@
             "data": {
               "labels": []
             }
+          },
+          "preferences": {
+            "filterOnClick": true
+          }
+        },
+        {
+          "id": "75e7d28d-bd56-4a69-b177-ce1b3c127d9d",
+          "title": "New Card",
+          "description": "New Card Description",
+          "type": "bar",
+          "data": [],
+          "connectionId": "c_594ca5ef-93db-43d0-96d3-b6c2c7ccaecf",
+          "sql": "SELECT \n  TO_CHAR(order_date, 'YYYY-MM') AS order_date,\n  SUM(sales) AS total_sales\nFROM \n  sales_data {{ filters | where }} \nGROUP BY \n  TO_CHAR(order_date, 'YYYY-MM')\nORDER BY \n  TO_CHAR(order_date, 'YYYY-MM');\n ",
+          "lastSelectedDatabase": "verceldb",
+          "lastSelectedTable": "sales_data",
+          "cfg": {
+            "data": {
+              "labels": []
+            }
+          },
+          "customCfg": null,
+          "preferences": {
+            "filterOnClick": true
           }
         }
       ],
@@ -163,16 +144,6 @@
           "x": 0,
           "y": 0,
           "i": "ba4b6599-11cc-4738-a88f-70933db41514",
-          "minW": 10,
-          "moved": false,
-          "static": false
-        },
-        {
-          "w": 20,
-          "h": 7,
-          "x": 0,
-          "y": 7,
-          "i": "de39fd7b-8fff-43ad-b966-18c286293403",
           "minW": 10,
           "moved": false,
           "static": false
@@ -193,6 +164,16 @@
           "x": 20,
           "y": 0,
           "i": "f8817b99-2bbf-406d-af40-7460d438f0bc",
+          "minW": 10,
+          "moved": false,
+          "static": false
+        },
+        {
+          "w": 20,
+          "h": 7,
+          "x": 0,
+          "y": 7,
+          "i": "75e7d28d-bd56-4a69-b177-ce1b3c127d9d",
           "minW": 10,
           "moved": false,
           "static": false
